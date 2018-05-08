@@ -4,6 +4,7 @@ from osc.core import http_GET
 
 @osc.cmdln.option('--rev', '-r', metavar='Revision', help='revision of the target file')
 @osc.cmdln.option('--destination', '-d', metavar='Destination', help='destination where the file should be stored (locally)')
+@osc.cmdln.option('--quiet', '-q', action='store_true', metavar='Quiet', help="shut up and don't print anything")
 
 def do_get(self, subcmd, opts, *args):
     opts = opts.__dict__
@@ -39,6 +40,7 @@ def do_get(self, subcmd, opts, *args):
         target_file.write(content)
         target_file.close()
 
-    print(content)
+    if not opts['quiet']:
+        print(content)
 
 # vim: sw=4 et ts=4
